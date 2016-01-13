@@ -31,12 +31,16 @@ from pattern import v1
 #从命令行中读取设置，给定port，否则使用默认值，参数必须为int
 from tornado.options import define, options
 define("port", default=8888, help="run on the given port", type=int)
+# define("logging", default="debug",
+#        help=("Set the Python log level. If 'none', tornado won't touch the "
+#              "logging configuration."),
+#        metavar="debug|info|warning|error|none")
 
 
 if __name__ == "__main__":
     tornado.options.parse_command_line()
     #创建IndexHandler的实例，handler将url和Handler匹配
-    app = tornado.web.Application(handlers=v1.handlers)
+    app = tornado.web.Application(handlers=v1.handlers, debug=True)
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
     #不断处理http请求（loop）

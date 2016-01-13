@@ -1,3 +1,5 @@
+from db.db_api import DBApi
+
 __author__ = 'lina'
 
 
@@ -11,4 +13,5 @@ class BookModel():
         return data
 
     def get_book(self, id):
-        pass
+        db = DBApi()
+        return db.query_data_by_id(id)

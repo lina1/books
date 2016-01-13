@@ -18,3 +18,5 @@ class BookHandler(BaseHandler):
     def get(self, id):
         # self.write("Hello World")
         self.write(self.book_model.get_book(id))
+
+        # self.write("Book Not Found")
